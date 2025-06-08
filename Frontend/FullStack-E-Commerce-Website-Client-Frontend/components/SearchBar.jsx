@@ -1,7 +1,8 @@
-import { productsList } from '../store/productsList';
+// import { productsList } from '../store/productsList';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { getAllProducts } from '../store/slices/productsSlice';
+import { useSelector } from 'react-redux';
 export default function SearchBar({ setquery }) {
   const listContainRef = useRef(null);
   const inputRef = useRef(null);
@@ -10,6 +11,7 @@ export default function SearchBar({ setquery }) {
   const [suggestions, setSuggestions] = useState([]);
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
+  const productsList = useSelector(getAllProducts)
 
   document.addEventListener('click', (e) => {
     listContainRef.current?.classList.remove('visible');
